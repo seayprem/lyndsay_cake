@@ -53,7 +53,7 @@ include_once('system/config.php');
             <div class = "text-center">
                 <p class = "text-capitalize mt-3 mb-1"><?= $list_product_row['product_name']; ?></p>
                 <span class = "fw-bold d-block">฿ <?= $list_product_row['product_price']; ?></span>
-                <a href = "#" class = "btn btn-primary mt-3">ตะกร้าสินค้า</a>
+                <a href = "cart.php?p_id=<?= $list_product_row['product_id']; ?>&act=add" class = "btn btn-primary mt-3">ตะกร้าสินค้า</a>
             </div>
             
           </div>

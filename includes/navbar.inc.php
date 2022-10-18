@@ -9,7 +9,7 @@
             <a href="login.php" class="btn position-relative">
               <i class="fa-solid fa-user"></i> เข้าสู่ระบบ
             </a>
-            <a href="login.php" class="btn position-relative">
+            <a href="cart.php" class="btn position-relative">
               <i class = "fa fa-shopping-cart"></i> ตะกร้าสินค้า <span class="badge bg-danger">0</span>
             </a>
         </div>
