@@ -1,3 +1,10 @@
+<?php 
+include_once('../system/config.php');
+session_start();
+if(empty($_SESSION['admin'])) {
+  header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,19 +31,53 @@
         <h2 class="position-relative d-inline-block">รายการสินค้า</h2>
       </div>
 
-      <div class = "col-md-6 col-lg-4 col-xl-3 p-2">
-        <div class = "special-img position-relative overflow-hidden">
-            <img src = "../img/products/c_formal_gray_shirt.png" class = "w-100">
-            <span class = "position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
-                <i class = "fas fa-heart"></i>
-            </span>
+
+      <div class="col-md-12">
+        <div class="row">
+
+          <!-- list product cake  -->
+
+          <?php 
+          $list_product_sql = "SELECT * FROM `products` ORDER BY `product_id` DESC";
+          $list_product_query = mysqli_query($conn, $list_product_sql);
+          while($list_product_row = mysqli_fetch_array($list_product_query)) {
+
+          
+          ?>
+
+          <div class = "col-md-6 col-lg-4 col-xl-3 p-2">
+
+            <div class = "special-img position-relative overflow-hidden">
+                <img src = "../img/products/<?= $list_product_row['product_image']; ?>" class = "w-100">
+                <span class = "position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
+                    <i class = "fas fa-heart"></i>
+                </span>
+            </div>
+            
+            <div class = "text-center">
+                <p class = "text-capitalize mt-3 mb-1"><?= $list_product_row['product_name']; ?></p>
+                <span class = "fw-bold d-block">฿ <?= $list_product_row['product_price']; ?></span>
+            </div>
+            
+          </div>
+          <?php } ?>
+
+          <!-- list product cake end -->
+
+
+          
+
         </div>
-        <div class = "text-center">
-            <p class = "text-capitalize mt-3 mb-1">เค้กส้ม</p>
-            <span class = "fw-bold d-block">฿ 45.50</span>
-            <a href = "#" class = "btn btn-primary mt-3">ตะกร้าสินค้า</a>
-        </div>
-    </div>
+      </div>
+
+     
+
+      
+
+      
+
+      
+      
 
     </div>
   </section>

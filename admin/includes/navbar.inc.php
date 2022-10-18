@@ -6,10 +6,10 @@
         </a>
 
         <div class = "order-lg-2 nav-btns">
-            <a href="login.php" class="btn position-relative">
-              <i class="fa-solid fa-user"></i> คุณ admin
+            <a href="#" class="btn position-relative">
+              <i class="fa-solid fa-user"></i> คุณ <?= $_SESSION['admin']; ?>
             </a>
-            <a href="login.php" class="btn position-relative">
+            <a href="logout.php" class="btn position-relative">
             <i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ
             </a>
         </div>

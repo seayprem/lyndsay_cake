@@ -10,10 +10,18 @@ if(isset($_POST['register'])) {
   $password = $_POST['password'];
   $confirmpassword = $_POST['confirmpassword'];
 
+  $check_user_sql = "SELECT * FROM `users` WHERE `user_name` = '$username' LIMIT 1";
+  $check_user_query = mysqli_query($conn, $check_user_sql);
+  $check_user_row = mysqli_fetch_array($check_user_query);
+
+  $usernameCopy = $check_user_row['user_name'];
+
   if($password != $confirmpassword) {
     echo "<script>alert('รหัสผ่านไม่ตรงกัน')</script>";
+  } else if($username == $usernameCopy) {
+    echo "<script>alert('Username ซ้ำกับผู้อื่น')</script>";
   } else {
-    $sql = "INSERT INTO `users` (`user_name`, `user_pass`, `user_email`, `user_lineid`, `user_phone`) VALUES ('$username', '$password', '$email', '$lineid', '$phone')";
+    $sql = "INSERT INTO `users` (`user_name`, `user_pass`, `user_fullname`, `user_email`, `user_lineid`, `user_phone`) VALUES ('$username', '$password', '$fullname', '$email', '$lineid', '$phone')";
     $query = mysqli_query($conn, $sql);
     if($query) {
       echo "<script>alert('สมัครสมาชิกสำเร็จ')</script>";
@@ -78,11 +86,11 @@ if(isset($_POST['register'])) {
           </div>
           <div class="mb-3">
             <label class="form-label">รหัสผ่าน</label>
-            <input type="text" name="password" class="form-control" placeholder="กรุณากรอกรหัสผ่าน">
+            <input type="password" name="password" class="form-control" placeholder="กรุณากรอกรหัสผ่าน">
           </div>
           <div class="mb-3">
             <label class="form-label">ยืนยันรหัสผ่าน</label>
-            <input type="text" name="confirmpassword" class="form-control" placeholder="กรุณากรอกยืนยันรหัสผ่าน">
+            <input type="password" name="confirmpassword" class="form-control" placeholder="กรุณากรอกยืนยันรหัสผ่าน">
           </div>
 
           <div class="d-grid gap-2">

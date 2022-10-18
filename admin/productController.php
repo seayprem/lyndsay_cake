@@ -1,5 +1,9 @@
 <?php 
 include_once('../system/config.php');
+session_start();
+if(empty($_SESSION['admin'])) {
+  header("Location: login.php");
+}
 ?>
 
 <!-- ADD PRODUCT CONTROLLER INSERT ON MYSQL  -->
@@ -48,6 +52,7 @@ if(isset($_POST['addProduct'])) {
 <!-- EDIT UPDATE PRODUCT CONTROLLER INSERT ON MYSQL  -->
 <?php 
 if(isset($_POST['editProduct'])) {
+  $product_id = $_GET['edit_id'];
   $name = $_POST['name'];
   $category = $_POST['category'];
   $detail = $_POST['detail'];
@@ -62,9 +67,54 @@ if(isset($_POST['editProduct'])) {
   $random = rand(0, 999999999);
   $rename = 'product'.date('ymdhis').$random;
   $newname = $rename . '.' . $extension;
+
+  if(empty($_FILES['files']['name'])) {
+    $update_sql = "UPDATE `products` SET `product_name` = '$name', `product_detail` = '$detail', `product_price` = $price, `cate_id` = $category WHERE `product_id` = $product_id";
+    $update_query = mysqli_query($conn, $update_sql);
+    if($update_query) {
+      echo "success";
+    } else {
+      echo "failed";
+    }
+  } else {
+
+    if($checkImage['extension'] == "jpg" || $checkImage['extension'] == "png") {
+      move_uploaded_file($_FILES['files']['tmp_name'], "../img/products/" . $newname);
+  
+      $update_sql = "UPDATE `products` SET `product_name` = '$name', `product_detail` = '$detail', `product_price` = $price, `product_image` = '$newname', `cate_id` = $category WHERE `product_id` = $product_id";
+      $update_query = mysqli_query($conn, $update_sql);
+      if($update_query) {
+        echo "success";
+      } else {
+        echo "failed";
+      }
+
+    }
+  
+  }
+
 }
 ?>
 <!-- EDIT UPDATE PRODUCT CONTROLLER INSERT ON MYSQL END  -->
+
+<!-- DELETE PRODUCT CONTROLLER  -->
+<?php 
+if(isset($_REQUEST['delete'])) {
+  $delete_id = $_REQUEST['delete'];
+
+  $delete_sql = "DELETE FROM `products` WHERE `product_id` = $delete_id";
+  $delete_query = mysqli_query($conn, $delete_id);
+  if($delete_query) {
+    echo $delete_id;
+    echo "success";
+  } else {
+    echo $delete_id;
+    echo "failed";
+  }
+
+}
+?>
+<!-- DELETE PRODUCT CONTROLLER END -->
 
 
 <!DOCTYPE html>
@@ -161,7 +211,7 @@ if(isset($_POST['editProduct'])) {
       $edit_query = mysqli_query($conn, $edit_sql);
       $edit_row = mysqli_fetch_array($edit_query);
       ?>
-      <form action="#" method="POST" enctype="multipart/form-data">
+      <form action="productController.php?edit_id=<?= $edit_row['product_id']; ?>" method="POST" enctype="multipart/form-data">
         <div class="col-md-5 mx-auto">
           <div class="mb-3">
             <label class="form-label">ชื่อสินค้า</label>
@@ -197,6 +247,7 @@ if(isset($_POST['editProduct'])) {
           </div>
 
           <div class="d-grid gap-2">
+            <input type="hidden" value="<?= $edit_row['product_name']; ?>" name="edit_id">
             <button class="btn btn-primary" type="submit" name="editProduct">แก้ไขสินค้า</button>
             <a href="productController.php" class="btn btn-primary">ยกเลิก</a>            
           </div>
