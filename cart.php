@@ -5,6 +5,7 @@ session_start();
 
 <!-- LOGIC CART  -->
 <?php 
+
  $p_id = $_GET['p_id']; 
  $act = $_GET['act'];
 
@@ -12,7 +13,8 @@ session_start();
  {
    if(isset($_SESSION['cart'][$p_id]))
    {
-     $_SESSION['cart'][$p_id]++;
+    //  $_SESSION['cart'][$p_id]++;
+    header("Location: index.php");
    }
    else
    {
@@ -71,12 +73,13 @@ session_start();
       <td bgcolor="#EAEAEA"  class='text-center'>ภาพสินค้า</td>
       <td align="center" bgcolor="#EAEAEA">สินค้า</td>
       <td align="center" bgcolor="#EAEAEA">ราคา</td>
-      <td align="center" bgcolor="#EAEAEA">จำนวน</td>
+      <td align="center" bgcolor="#EAEAEA">จำนวน (ปอนด์)</td>
       <td align="center" bgcolor="#EAEAEA">รวม(บาท)</td>
       <td align="center" bgcolor="#EAEAEA">ลบ</td>
     </tr>
     
 <?php
+
 $total=0;
 if(!empty($_SESSION['cart']))
 {
@@ -89,7 +92,7 @@ if(!empty($_SESSION['cart']))
     $imgs = $row['product_image'];
 		$total += $sum;
 		echo "<tr>";
-		echo "<td <img src='img/products/$imgs'></td>";
+		echo "<td><img src='img/products/".$row['product_image']."' width='150' height='150'></td>";
 		echo "<td class='text-center'>" . $row["product_name"] . "</td>";
 		echo "<td align='center'>" .number_format($row["product_price"],2) . "</td>";
 		echo "<td align='center'>";  
@@ -107,6 +110,10 @@ if(!empty($_SESSION['cart']))
     echo "<td></td>";
 
 	echo "</tr>";
+} else {
+  echo '<script>alert("กรุณาเลือกสินค้าก่อน")</script>';
+  // echo '<script>history.back()</script>';
+  echo '<script>window.location.href = "index.php"</script>';
 }
 ?>
 <tr>

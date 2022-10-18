@@ -6,11 +6,24 @@
         </a>
 
         <div class = "order-lg-2 nav-btns">
+            <?php 
+            if(!empty($_SESSION['user'])) {
+
+            
+            ?>
+            <a href="#" class="btn position-relative">
+              <i class="fa-solid fa-user"></i> <?= $_SESSION['user']; ?>
+            </a>
+            <a href="logout.php" class="btn position-relative">
+              <i class="fa-solid fa-user"></i> ออกจากระบบ
+            </a>
+            <?php } else { ?>
             <a href="login.php" class="btn position-relative">
               <i class="fa-solid fa-user"></i> เข้าสู่ระบบ
             </a>
+            <?php } ?>
             <a href="cart.php" class="btn position-relative">
-              <i class = "fa fa-shopping-cart"></i> ตะกร้าสินค้า <span class="badge bg-danger">0</span>
+              <i class = "fa fa-shopping-cart"></i> ตะกร้าสินค้า</span>
             </a>
         </div>
 

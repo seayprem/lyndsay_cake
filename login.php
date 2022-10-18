@@ -1,3 +1,30 @@
+<?php 
+include_once('system/config.php');
+session_start();
+?>
+
+<?php 
+
+if(isset($_POST['login'])) {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+
+  $sql = "SELECT * FROM `users` WHERE `user_name` = '$username' AND `user_pass` = '$password'";
+  $query = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_array($query);
+  if(mysqli_num_rows($query) > 0) {
+
+    $_SESSION['user'] = $row['user_fullname'];
+    $_SESSION['user_id'] = $row['user_id'];
+    header("Location: index.php");
+  } else {
+    header("Location: login.php");
+  }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,20 +53,20 @@
 
       <!-- login form  -->
 
-      <form action="">
+      <form action="login.php" method="POST">
 
         <div class="col-md-5 mx-auto">
           <div class="mb-3">
             <label class="form-label">ชื่อผู้ใช้</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผู้ใช้">
+            <input type="text" class="form-control" name="username" placeholder="กรุณากรอกชื่อผู้ใช้" required>
           </div>
           <div class="mb-3">
             <label class="form-label">รหัสผ่าน</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกรหัสผ่าน">
+            <input type="password" class="form-control" name="password" placeholder="กรุณากรอกรหัสผ่าน" required>
           </div>
 
           <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ</button>
+            <button class="btn btn-primary" type="submit" name="login"><i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ</button>
           </div>
 
         </div>
