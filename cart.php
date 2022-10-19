@@ -13,8 +13,8 @@ session_start();
  {
    if(isset($_SESSION['cart'][$p_id]))
    {
-    //  $_SESSION['cart'][$p_id]++;
-    header("Location: index.php");
+     $_SESSION['cart'][$p_id]++;
+    header("Location: cart.php");
    }
    else
    {
@@ -96,7 +96,7 @@ if(!empty($_SESSION['cart']))
 		echo "<td class='text-center'>" . $row["product_name"] . "</td>";
 		echo "<td align='center'>" .number_format($row["product_price"],2) . "</td>";
 		echo "<td align='center'>";  
-		echo "<input type='text' name='amount[$p_id]' value='$qty' size='2'/></td>";
+		echo "<input type='number' name='amount[$p_id]' value='$qty' size='2' style='width: 60px;'/></td>";
 		echo "<td width='93' align='center'>".number_format($sum,2)."</td>";
 		//remove product
 		echo "<td align='center'><a href='cart.php?p_id=$p_id&act=remove' class='btn btn-primary'>ลบ</a></td>";

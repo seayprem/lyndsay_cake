@@ -63,6 +63,20 @@ if(isset($_POST['editUser'])) {
 ?>
 <!-- UPDATE USER END -->
 
+<?php 
+if(isset($_GET['delete'])) {
+  $delete_id = $_GET['delete'];
+
+  $delete_sql = "DELETE FROM `users` WHERE `user_id` = $delete_id";
+  $delete_query = mysqli_query($conn, $delete_sql);
+  if($delete_query) {
+    header("Location: userController.php");
+  } else {
+    echo "failed";
+  }
+
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -250,7 +264,7 @@ if(isset($_POST['editUser'])) {
           <td>
             <a href="userController.php?detail=<?= $list_user_row['user_id']; ?>" class="btn btn-primary">รายละเอียด</a>
             <a href="userController.php?edit=<?= $list_user_row['user_id']; ?>" class="btn btn-primary">แก้ไข</a>
-            <a href="#" class="btn btn-primary">ลบ</a>
+            <a href="userController.php?delete=<?= $list_user_row['user_id']; ?>" class="btn btn-primary">ลบ</a>
           </td>
         </tr>
         <?php } ?>
