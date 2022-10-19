@@ -103,12 +103,11 @@ if(isset($_REQUEST['delete'])) {
   $delete_id = $_REQUEST['delete'];
 
   $delete_sql = "DELETE FROM `products` WHERE `product_id` = $delete_id";
-  $delete_query = mysqli_query($conn, $delete_id);
+  $delete_query = mysqli_query($conn, $delete_sql);
   if($delete_query) {
-    echo $delete_id;
-    echo "success";
+    // echo "success";
+    header("Location: productController.php");
   } else {
-    echo $delete_id;
     echo "failed";
   }
 
