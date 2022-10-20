@@ -37,7 +37,7 @@
                     <a class = "nav-link text-uppercase text-dark" href = "index.php">หน้าหลัก</a>
                 </li>
                 <li class = "nav-item px-2 py-2">
-                    <a class = "nav-link text-uppercase text-dark" href = "products.php">สินค้า</a>
+                    <a class = "nav-link text-uppercase text-dark" href = "products.php">เค้ก</a>
                 </li>
                 <li class = "nav-item px-2 py-2">
                     <a class = "nav-link text-uppercase text-dark" href = "orders.php">รายการสั่งซื้อ</a>

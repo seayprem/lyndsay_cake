@@ -118,6 +118,7 @@ if(empty($_SESSION['user'])) {
       </tr>
       <input type="hidden" name="total_qty" value="<?= $qty ?>">
       <input type="hidden" name="total" value="<?= $total ?>">
+      <input type="hidden" name="userid" value="<?= $_SESSION['user_id']; ?>">
       <tr>
         <td colspan="2" align="center" bgcolor="#CCCCCC">
         <input type="submit" name="Submit2" class="btn btn-primary" value="สั่งซื้อ" />

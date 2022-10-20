@@ -1,5 +1,5 @@
 <?php 
-include_once('../system/config.php');
+include_once('system/config.php');
 session_start();
 ?>
 
@@ -10,11 +10,11 @@ session_start();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>จัดการผู้ใช้ | Lyndsay Cake</title>
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/all.min.css">
-  <link rel="stylesheet" href="../css/fontawesome.min.css">
-  <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/fontawesome.min.css">
+  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   
@@ -26,7 +26,7 @@ session_start();
   <section id="section" class="py-5">
     <div class="container">
       <div class="title text-center">
-        <h2 class="position-relative d-inline-block">จัดการคำสั่งซื้อ</h2>
+        <h2 class="position-relative d-inline-block">รายการสั่งซื้อ</h2>
       </div>
     </div>
   </section>
@@ -44,10 +44,8 @@ session_start();
       <thead>
         <tr>
           <th>เลขออเดอร์</th>
-          <th>ชื่อคนสั่ง</th>
           <th>ชื่อสินค้า</th>
           <th>จำนวนที่สั่งซื้อ</th>
-          <th>ราคา</th>
         </tr>
       </thead>
       <tbody>
@@ -64,10 +62,8 @@ session_start();
         
         <tr>
           <td><?= $list_order_detail_row['o_id']; ?></td>
-          <td><?= $list_order_detail_row['o_name']; ?></td>
           <td><?= $list_order_detail_row['product_name']; ?></td>
           <td><?= $list_order_detail_row['d_qty']; ?></td>
-          <td><?= number_format($list_order_detail_row['d_subtotal']); ?></td>
         </tr>
         <?php } ?>
         <!-- List order join order detail end -->
@@ -91,6 +87,7 @@ session_start();
       <thead>
         <tr>
           <th class="text-center">ลำดับ</th>
+          <th class="text-center">ชื่อ-นามสกุล</th>
           <th class="text-center">เบอร์โทร</th>
           <th class="text-center">ไอดีไลน์</th>
           <th class="text-center">ราคาที่สั่งหมด</th>
@@ -103,14 +100,20 @@ session_start();
       <tbody>
         <!-- list order management -->
         <?php 
-        $sql = "SELECT * FROM `order_head` ORDER BY `o_id` DESC";
+        if(empty($_SESSION)) {
+          echo '<script>alert("กรุณาเข้าสู่ระบบก่อน");window.location.href = "login.php"</script>';
+        }
+        $userid = $_SESSION['user_id'];
+        
+        $sql = "SELECT * FROM `order_head` WHERE user_id = $userid ORDER BY `o_id` DESC";
         $query = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_array($query)) {
 
         
         ?>
-        <tr class="text-center">
+        <tr>
           <td><?= $row['o_id']; ?></td>
+          <td><?= $row['o_name']; ?></td>
           <td><?= $row['o_phone']; ?></td>
           <td><?= $row['o_lineid']; ?></td>
           <td><?= number_format($row['o_total']); ?></td>
@@ -126,9 +129,9 @@ session_start();
             ?>
           </td>
           <td>
-            <a href="orderController.php?detail_order=<?= $row['o_id']; ?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
-            <a href="#" class="btn btn-primary"><i class="fa-solid fa-check"></i></a>
-            <a href="#" class="btn btn-primary"><i class="fa-solid fa-trash"></i></a>
+            <a href="orderController.php?detail_order=<?= $row['o_id']; ?>" class="btn btn-primary">รายละเอียด</a>
+            <a href="#" class="btn btn-primary">เปลี่ยนสถานะ</a>
+            <a href="#" class="btn btn-primary">ลบ</a>
           </td>
         </tr>
         <?php } ?>
@@ -142,11 +145,11 @@ session_start();
   
 
 
-  <script src="../js/jquery-3.6.0.min.js"></script>
-  <script src="../js/popper.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="../js/jquery.dataTables.min.js"></script>
-  <script src="../js/sweetalert2@11.js"></script>
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
+  <script src="js/sweetalert2@11.js"></script>
 
   <script>
     $(document).ready( function () {
