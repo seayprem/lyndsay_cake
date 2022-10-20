@@ -28,7 +28,7 @@ if(empty($_SESSION['user'])) {
   <div class="container">
 
   
-  <form id="frmcart" name="frmcart" method="post" action="saveorder.php">
+  <form id="frmcart" name="frmcart" method="post" action="saveorder.php" enctype="multipart/form-data">
     <table class="text-center mt-5 table">
       <tr>
         <td colspan="5"><strong><h3>สั่งซื้อสินค้า</h3></strong></td>
@@ -85,18 +85,28 @@ if(empty($_SESSION['user'])) {
           <td><input name="name" type="text" id="name" class="form-control" value="<?= $list_user_row['user_fullname']; ?>" required/></td>
       </tr>
       <tr>
-          <td width="22%" bgcolor="#EEEEEE">ที่อยู่</td>
-          <td width="78%">
-          <textarea name="address" class="form-control" cols="35" rows="5" id="address" required></textarea>
-          </td>
-      </tr>
-      <tr>
           <td bgcolor="#EEEEEE">อีเมล</td>
           <td><input name="email" type="email" id="email" class="form-control" value="<?= $list_user_row['user_email']; ?>"  required/></td>
       </tr>
       <tr>
           <td bgcolor="#EEEEEE">เบอร์ติดต่อ</td>
           <td><input name="phone" type="text" id="phone" class="form-control"  value="<?= $list_user_row['user_phone']; ?>" required /></td>
+      </tr>
+      <tr>
+          <td bgcolor="#EEEEEE">ไอดีไลน์</td>
+          <td><input name="lineid" type="text" id="phone" class="form-control"  value="<?= $list_user_row['user_lineid']; ?>" required /></td>
+      </tr>
+      <tr>
+          <td bgcolor="#EEEEEE">วันที่นัดรับ</td>
+          <td><input name="date_meet" type="date" id="phone" class="form-control" required /></td>
+      </tr>
+      <tr>
+          <td bgcolor="#EEEEEE">QR CODE</td>
+          <td><img src="" width="150" height="150"></td>
+      </tr>
+      <tr>
+          <td bgcolor="#EEEEEE">แนบหลักฐานการโอนเงิน</td>
+          <td><input name="files" type="file" class="form-control" required /></td>
       </tr>
       <input type="hidden" name="total_qty" value="<?= $qty ?>">
       <input type="hidden" name="total" value="<?= $total ?>">
