@@ -45,7 +45,7 @@ session_start();
           <div class = "col-md-6 col-lg-4 col-xl-3 p-2">
 
             <div class = "special-img position-relative overflow-hidden">
-                <img src = "img/products/<?= $list_product_row['product_image']; ?>" class = "w-100" height="300" height="100">
+                <a href="product_detail.php"><img src = "img/products/<?= $list_product_row['product_image']; ?>" class = "w-100" height="300" height="100"></a>
                 <span class = "position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
                     <i class = "fas fa-heart"></i>
                 </span>
