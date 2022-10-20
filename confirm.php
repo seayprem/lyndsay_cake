@@ -95,13 +95,11 @@ if(empty($_SESSION['user'])) {
           <td><input name="email" type="email" id="email" class="form-control" value="<?= $list_user_row['user_email']; ?>"  required/></td>
       </tr>
       <tr>
-          <td bgcolor="#EEEEEE">ไอดีไลน์</td>
-          <td><input name="lineid" type="text" id="email" class="form-control" value="<?= $list_user_row['user_lineid']; ?>"  required/></td>
-      </tr>
-      <tr>
           <td bgcolor="#EEEEEE">เบอร์ติดต่อ</td>
           <td><input name="phone" type="text" id="phone" class="form-control"  value="<?= $list_user_row['user_phone']; ?>" required /></td>
       </tr>
+      <input type="hidden" name="total_qty" value="<?= $qty ?>">
+      <input type="hidden" name="total" value="<?= $total ?>">
       <tr>
         <td colspan="2" align="center" bgcolor="#CCCCCC">
         <input type="submit" name="Submit2" class="btn btn-primary" value="สั่งซื้อ" />
