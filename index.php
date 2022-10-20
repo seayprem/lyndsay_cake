@@ -21,11 +21,35 @@ session_start();
   <?php include('includes/navbar.inc.php'); ?>
   <!-- navbar end  -->
 
+  <!-- header -->
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="..." class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+    <!-- end of header -->
+
   <!-- collection -->
   <section id="section" class="py-5">
     <div class="container">
       <div class="title text-center">
-        <h2 class="position-relative d-inline-block">รายการสินค้า</h2>
+        <h2 class="position-relative d-inline-block">รายการสินค้าทั้งหมด</h2>
       </div>
 
 
@@ -45,7 +69,7 @@ session_start();
           <div class = "col-md-6 col-lg-4 col-xl-3 p-2">
 
             <div class = "special-img position-relative overflow-hidden">
-                <img src = "img/products/<?= $list_product_row['product_image']; ?>" class = "w-100">
+                <img src = "img/products/<?= $list_product_row['product_image']; ?>" class = "w-100" height="300" height="100">
                 <span class = "position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
                     <i class = "fas fa-heart"></i>
                 </span>

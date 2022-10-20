@@ -28,9 +28,9 @@ if(isset($_POST['addUser'])) {
     $sql = "INSERT INTO `users` (`user_name`, `user_pass`, `user_fullname`, `user_email`, `user_lineid`, `user_phone`) VALUES ('$username', '$password', '$fullname', '$email', '$lineid', '$phone')";
     $query = mysqli_query($conn, $sql);
     if($query) {
-      echo "<script>alert('เพิ่มข้อมูลผู้ใช้สำเร็จ')</script>";
+      echo "<script>alert('เพิ่มข้อมูลผู้ใช้สำเร็จ');window.location.href = 'userController.php'</script>";
     } else {
-      echo "<script>('เพิ่มข้อมูลผู้ใช้ล้มเหลว')</script>";
+      echo "<script>('เพิ่มข้อมูลผู้ใช้ล้มเหลว');window.location.href = 'userController.php'</script>";
     }
   }
 

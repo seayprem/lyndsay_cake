@@ -3,13 +3,42 @@ include_once('../system/config.php');
 session_start();
 ?>
 
+<?php 
+if(isset($_GET['order_id'])) {
+  $status = $_GET['order_id'];
+  $update_status_sql = "UPDATE `order_head` SET `o_status`= 1 WHERE `o_id` = $status";
+  $update_status_query = mysqli_query($conn,$update_status_sql);
+  if($update_status_query) {
+    header("Location: orderController.php");
+  } else {
+    header("Location: orderController.php");
+  }
+
+}
+
+
+if(isset($_GET['order_id_2'])) {
+  $status = $_GET['order_id_2'];
+  $update_status_sql = "UPDATE `order_head` SET `o_status`= 0 WHERE `o_id` = $status";
+  $update_status_query = mysqli_query($conn,$update_status_sql);
+  if($update_status_query) {
+    header("Location: orderController.php");
+  } else {
+    header("Location: orderController.php");
+  }
+
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>จัดการผู้ใช้ | Lyndsay Cake</title>
+  <title>จัดการคำสั่งซื้อ | Lyndsay Cake</title>
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/all.min.css">
   <link rel="stylesheet" href="../css/fontawesome.min.css">
@@ -44,7 +73,8 @@ session_start();
       <thead>
         <tr>
           <th>เลขออเดอร์</th>
-          <th>ชื่อคนสั่ง</th>
+          <th>ภาพสินค้า</th>
+          <th>ชื่อลูกค้า</th>
           <th>ชื่อสินค้า</th>
           <th>จำนวนที่สั่งซื้อ</th>
           <th>ราคา</th>
@@ -64,6 +94,7 @@ session_start();
         
         <tr>
           <td><?= $list_order_detail_row['o_id']; ?></td>
+          <td><img src="../img/products/<?= $list_order_detail_row['product_image']; ?>" width="100" height="100" alt=""></td>
           <td><?= $list_order_detail_row['o_name']; ?></td>
           <td><?= $list_order_detail_row['product_name']; ?></td>
           <td><?= $list_order_detail_row['d_qty']; ?></td>
@@ -86,11 +117,12 @@ session_start();
 
 
   <div class="container">
-    <h3>ผู้ใช้ทั้งหมด</h3>
+    <h3>คำสั่งซื้อทั้งหมด</h3>
     <table class="table table-hover" id="myTable">
       <thead>
         <tr>
           <th class="text-center">ลำดับ</th>
+          <th class="text-center">หลักฐานการโอน</th>
           <th class="text-center">เบอร์โทร</th>
           <th class="text-center">ไอดีไลน์</th>
           <th class="text-center">ราคาที่สั่งหมด</th>
@@ -111,6 +143,7 @@ session_start();
         ?>
         <tr class="text-center">
           <td><?= $row['o_id']; ?></td>
+          <td><a href="../img/products/<?= $row['o_prove']; ?>" target="_blank"><img src="../img/products/<?= $row['o_prove']; ?>" width="100" height="100" alt=""></a></td>
           <td><?= $row['o_phone']; ?></td>
           <td><?= $row['o_lineid']; ?></td>
           <td><?= number_format($row['o_total']); ?></td>
@@ -127,7 +160,18 @@ session_start();
           </td>
           <td>
             <a href="orderController.php?detail_order=<?= $row['o_id']; ?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
-            <a href="#" class="btn btn-primary"><i class="fa-solid fa-check"></i></a>
+            <?php 
+            if($row['o_status'] == 1) {
+
+            
+            ?>
+              <a href="orderController.php?order_id_2=<?= $row['o_id']; ?>" class="btn btn-primary" onclick="return confirm('แน่ใจใช่แล้วหรือไม่? จะกลับไปสถานะเดิม')"><i class="fa-solid fa-xmark"></i></a>  
+            <?php } else {
+
+             ?>
+
+              <a href="orderController.php?order_id=<?= $row['o_id']; ?>" class="btn btn-primary" onclick="return confirm('แน่ใจใช่แล้วหรือไม่? ที่จะยืนยันที่เปลี่ยนสถานะ')"><i class="fa-solid fa-check"></i></a>  
+            <?php } ?>
             <a href="#" class="btn btn-primary"><i class="fa-solid fa-trash"></i></a>
           </td>
         </tr>

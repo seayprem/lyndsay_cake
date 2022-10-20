@@ -42,9 +42,10 @@ session_start();
   <div class="container">
     <table class="table">
       <thead>
-        <tr>
+        <tr class="text-center">
           <th>เลขออเดอร์</th>
           <th>ชื่อสินค้า</th>
+          <th>รูปภาพสินค้า</th>
           <th>จำนวนที่สั่งซื้อ</th>
         </tr>
       </thead>
@@ -60,8 +61,9 @@ session_start();
           while($list_order_detail_row = mysqli_fetch_array($list_order_detail_query)) {
         ?>
         
-        <tr>
+        <tr class="text-center">
           <td><?= $list_order_detail_row['o_id']; ?></td>
+          <td><img src="img/products/<?= $list_order_detail_row['product_image']; ?>" alt="" width="100" height="100"></td>
           <td><?= $list_order_detail_row['product_name']; ?></td>
           <td><?= $list_order_detail_row['d_qty']; ?></td>
         </tr>
@@ -72,7 +74,7 @@ session_start();
     </table>
     <hr>
     <div class="text-center">
-      <a href="orderController.php" class="btn btn-primary mb-5">ย้อนกลับ</a>
+      <a href="orders.php" class="btn btn-primary mb-5">ย้อนกลับ</a>
     </div>
   </div>
 
@@ -82,19 +84,17 @@ session_start();
 
 
   <div class="container">
-    <h3>ผู้ใช้ทั้งหมด</h3>
+    <h3>คำสั่งซื้อทั้งหมด</h3>
     <table class="table table-hover" id="myTable">
       <thead>
         <tr>
           <th class="text-center">ลำดับ</th>
-          <th class="text-center">ชื่อ-นามสกุล</th>
-          <th class="text-center">เบอร์โทร</th>
-          <th class="text-center">ไอดีไลน์</th>
+          <th class="text-center">หลักฐานการโอน</th>
           <th class="text-center">ราคาที่สั่งหมด</th>
           <th class="text-center">วันที่สั่ง</th>
           <th class="text-center">วันที่นัดรับ</th>
           <th class="text-center">สถานะ</th>
-          <th class="text-center">จัดการ</th>
+          <th class="text-center">รายละเอียด</th>
         </tr>
       </thead>
       <tbody>
@@ -111,11 +111,9 @@ session_start();
 
         
         ?>
-        <tr>
+        <tr class="text-center">
           <td><?= $row['o_id']; ?></td>
-          <td><?= $row['o_name']; ?></td>
-          <td><?= $row['o_phone']; ?></td>
-          <td><?= $row['o_lineid']; ?></td>
+          <td><a href="img/products/<?= $row['o_prove']; ?>" target="_blank"><img src="img/products/<?= $row['o_prove']; ?>" alt="" width="100" height="100"></a></td>
           <td><?= number_format($row['o_total']); ?></td>
           <td><?= $row['o_dttm']; ?></td>
           <td><?= $row['o_datemeet']; ?></td>
@@ -129,9 +127,7 @@ session_start();
             ?>
           </td>
           <td>
-            <a href="orderController.php?detail_order=<?= $row['o_id']; ?>" class="btn btn-primary">รายละเอียด</a>
-            <a href="#" class="btn btn-primary">เปลี่ยนสถานะ</a>
-            <a href="#" class="btn btn-primary">ลบ</a>
+            <a href="orders.php?detail_order=<?= $row['o_id']; ?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
           </td>
         </tr>
         <?php } ?>

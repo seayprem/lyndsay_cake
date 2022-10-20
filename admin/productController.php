@@ -34,9 +34,9 @@ if(isset($_POST['addProduct'])) {
       $addProduct_sql = "INSERT INTO `products`(`product_name`, `product_detail`, `product_price`, `product_image`, `cate_id`) VALUES ('$name', '$detail', $price, '$newname', $category)";
       $addProduct_query = mysqli_query($conn, $addProduct_sql);
       if($addProduct_query) {
-        echo "success";
+        echo "<script>alert('เพิ่มสินค้าสำเร็จ');window.location.href = 'productController.php'</script>";
       } else {
-        echo "failed";
+        echo "<script>alert('เพิ่มสินค้าล้มเหลว');window.location.href = 'productController.php'</script>";
       }
   
     }

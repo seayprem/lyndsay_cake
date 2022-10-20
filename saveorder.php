@@ -5,6 +5,11 @@ session_start();
 
 <!--สร้างตัวแปรสำหรับบันทึกการสั่งซื้อ -->
 <?php
+
+  // เขียนหน้าเค้ก
+  $d_write = $_POST['write'];
+  // เขียนหน้าเค้ก end
+
 	$userid = $_POST["userid"];
 	$name = $_POST["name"];
 	$email = $_POST["email"];
@@ -51,7 +56,7 @@ session_start();
       $row3	= mysqli_fetch_array($query3);
       $total	= $row3['product_price']*$qty;
       
-      $sql4	= "insert into order_detail values(null, '$o_id', '$p_id', '$qty', '$total')";
+      $sql4	= "insert into order_detail values(null, '$o_id', '$p_id', '$qty', '$total', '$d_write')";
       $query4	= mysqli_query($conn, $sql4);
     }
     

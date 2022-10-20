@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 include_once('system/config.php');
 session_start();
 ?>
@@ -71,6 +72,7 @@ session_start();
     </tr>
     <tr>
       <td bgcolor="#EAEAEA"  class='text-center'>ภาพสินค้า</td>
+      <td align="center" bgcolor="#EAEAEA">เขียนหน้าเค้ก</td>
       <td align="center" bgcolor="#EAEAEA">สินค้า</td>
       <td align="center" bgcolor="#EAEAEA">ราคา</td>
       <td align="center" bgcolor="#EAEAEA">จำนวน (ปอนด์)</td>
@@ -85,14 +87,19 @@ if(!empty($_SESSION['cart']))
 {
 	foreach($_SESSION['cart'] as $p_id=>$qty)
 	{
-		$sql = "select * from products where product_id=$p_id";
+		$sql = "select * from products inner join category on products.cate_id = category.cate_id where product_id=$p_id";
 		$query = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($query);
 		$sum = $row['product_price'] * $qty;
     $imgs = $row['product_image'];
 		$total += $sum;
 		echo "<tr>";
-		echo "<td><img src='img/products/".$row['product_image']."' width='150' height='150'></td>";
+		echo "<td class='text-center'><img src='img/products/".$row['product_image']."' width='150' height='150'></td>";
+    if($row['cate_name'] == "ของตกแต่ง") {
+    echo "<td></td>";
+    } else {
+		echo "<td class='text-center'><input type='text' name='write' placeholder='เขียนหน้าเค้กที่ต้องการ...' class='form-control'>";
+    }
 		echo "<td class='text-center'>" . $row["product_name"] . "</td>";
 		echo "<td align='center'>" .number_format($row["product_price"],2) . "</td>";
 		echo "<td align='center'>";  
@@ -105,19 +112,22 @@ if(!empty($_SESSION['cart']))
 	echo "<tr>";
   	echo "<td colspan='3' bgcolor='#CEE7FF' align='center'><b>ราคารวม</b></td>";
     echo "<td></td>";
+    echo "<td></td>";
   	echo "<td align='right' bgcolor='#CEE7FF'>"."<b>".number_format($total,2)."</b>"."</td>";
   	echo "<td align='left' bgcolor='#CEE7FF'></td>";
+    echo "<td></td>";
     echo "<td></td>";
 
 	echo "</tr>";
 } else {
   echo '<script>alert("กรุณาเลือกสินค้าก่อน")</script>';
   // echo '<script>history.back()</script>';
-  echo '<script>window.location.href = "index.php"</script>';
+  echo '<script>window.location.href = "products.php"</script>';
 }
 ?>
 <tr>
 <td><a href="product.php" class="btn btn-primary">กลับหน้ารายการสินค้า</a></td>
+<td></td>
 <td></td>
 <td colspan="4" align="right">
     <input type="submit" name="button" id="button" class="btn btn-primary" value="ปรับปรุง" />
