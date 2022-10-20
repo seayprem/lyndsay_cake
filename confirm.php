@@ -105,6 +105,14 @@ if(empty($_SESSION['user'])) {
           <td><img src="" width="150" height="150"></td>
       </tr>
       <tr>
+        <td></td>
+        <td>เลขบัญชี: xxx-xxxxx-x</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>ชื่อบัญชีผู้รับโอน: xxx-xxxxx-x</td>
+      </tr>
+      <tr>
           <td bgcolor="#EEEEEE">แนบหลักฐานการโอนเงิน</td>
           <td><input name="files" type="file" class="form-control" required /></td>
       </tr>
