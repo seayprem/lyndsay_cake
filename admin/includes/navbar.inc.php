@@ -30,7 +30,7 @@
                     <a class = "nav-link text-uppercase text-dark" href = "productController.php">จัดการสินค้า</a>
                 </li>
                 <li class = "nav-item px-2 py-2">
-                    <a class = "nav-link text-uppercase text-dark" href = "about.php">จัดการคำสั่งซื้อ</a>
+                    <a class = "nav-link text-uppercase text-dark" href = "orderController.php">จัดการคำสั่งซื้อ</a>
                 </li>
                 <li class = "nav-item px-2 py-2">
                     <a class = "nav-link text-uppercase text-dark" href = "contact.php">ติดต่อเรา</a>
