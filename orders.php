@@ -43,10 +43,11 @@ session_start();
     <table class="table">
       <thead>
         <tr class="text-center">
-          <th>เลขออเดอร์</th>
-          <th>ชื่อสินค้า</th>
           <th>รูปภาพสินค้า</th>
-          <th>จำนวนที่สั่งซื้อ</th>
+          <th>ชื่อสินค้า</th>
+          <th>ประเภทสินค้า</th>
+          <th>จำนวนที่สั่งซื้อ (ปอนด์)</th>
+          <th>ราคารวม</th>
         </tr>
       </thead>
       <tbody>
@@ -56,16 +57,17 @@ session_start();
         <!-- SELECT * FROM order_head INNER JOIN order_detail ON order_head.o_id = order_detail.o_id INNER JOIN products ON order_detail.product_id = products.product_id WHERE order_head.o_id = 1 -->
 
         <?php 
-          $list_order_detail_sql = "SELECT * FROM order_head INNER JOIN order_detail ON order_head.o_id = order_detail.o_id INNER JOIN products ON order_detail.product_id = products.product_id WHERE order_head.o_id = $detail_order_id";
+          $list_order_detail_sql = "SELECT * FROM order_head INNER JOIN order_detail ON order_head.o_id = order_detail.o_id INNER JOIN products ON order_detail.product_id = products.product_id INNER JOIN category ON products.cate_id = category.cate_id WHERE order_head.o_id = $detail_order_id";
           $list_order_detail_query = mysqli_query($conn, $list_order_detail_sql);
           while($list_order_detail_row = mysqli_fetch_array($list_order_detail_query)) {
         ?>
         
         <tr class="text-center">
-          <td><?= $list_order_detail_row['o_id']; ?></td>
           <td><img src="img/products/<?= $list_order_detail_row['product_image']; ?>" alt="" width="100" height="100"></td>
           <td><?= $list_order_detail_row['product_name']; ?></td>
+          <td><?= $list_order_detail_row['cate_name']; ?></td>
           <td><?= $list_order_detail_row['d_qty']; ?></td>
+          <td><?= number_format($list_order_detail_row['d_subtotal']); ?></td>
         </tr>
         <?php } ?>
         <!-- List order join order detail end -->
@@ -100,7 +102,7 @@ session_start();
       <tbody>
         <!-- list order management -->
         <?php 
-        if(empty($_SESSION)) {
+        if(empty($_SESSION['user_id'])) {
           echo '<script>alert("กรุณาเข้าสู่ระบบก่อน");window.location.href = "login.php"</script>';
         }
         $userid = $_SESSION['user_id'];

@@ -285,7 +285,7 @@ if(isset($_REQUEST['delete'])) {
           <td><img src="../img/products/<?= $list_product_row['product_image']; ?>" width="150" height="100"></td>
           <td><?= $list_product_row['product_name']; ?></td>
           <td><?= $list_product_row['cate_name']; ?></td>
-          <td><?= $list_product_row['product_price']; ?></td>
+          <td><?= number_format($list_product_row['product_price']); ?></td>
           <td>
             <a href="productController.php?editUpdate=<?=$list_product_row['product_id']; ?>" class="btn btn-primary">แก้ไข</a>
             <a href="productController.php?delete=<?=$list_product_row['product_id']; ?>" class="btn btn-primary" onclick="return confirm('แน่ใจใช่หรือไม่?')">ลบ</a>

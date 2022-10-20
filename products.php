@@ -14,6 +14,21 @@ session_start();
   <link rel="stylesheet" href="css/fontawesome.min.css">
   <link rel="stylesheet" href="css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="css/main.css">
+  <style>
+
+    .nav-tab {
+      color: black;
+    }
+
+    .nav-tab:hover {
+      background-color: #e5345b;
+      color: white !important;
+    }
+
+    .active {
+      background-color: #e5345b !important;
+    }
+  </style>
 </head>
 <body>
   
@@ -36,7 +51,7 @@ session_start();
 
           <div class="col-md-3">
             <nav class="nav nav-pills flex-column flex-sm-column">
-              <a class="flex-sm-fill text-sm-center nav-link" href="products.php">ทั้งหมด</a>
+              <a class="flex-sm-fill text-sm-center nav-link nav-tab <?php if(empty($_GET['cate'])) { echo 'active'; } ?>" href="products.php">ทั้งหมด</a>
               <!-- LIST CATE  -->
               <?php 
               $list_cate_sql = "SELECT * FROM `category` ORDER BY cate_id DESC";
@@ -45,7 +60,7 @@ session_start();
 
               
               ?>
-              <a class="flex-sm-fill text-sm-center nav-link" href="products.php?cate=<?= $list_cate_row['cate_name']; ?>"><?= $list_cate_row['cate_name']; ?></a>
+              <a class="flex-sm-fill nav-link nav-tab " href="products.php?cate=<?= $list_cate_row['cate_name']; ?>"><?= $list_cate_row['cate_name']; ?></a>
               <?php } ?>
               <!-- LIST CATE  -->
 

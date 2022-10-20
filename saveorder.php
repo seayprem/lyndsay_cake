@@ -84,5 +84,5 @@ session_start();
 
 <script type="text/javascript">
 	alert("<?php echo $msg;?>");
-	window.location ='product.php';
+	window.location ='products.php';
 </script>

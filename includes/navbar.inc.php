@@ -23,7 +23,10 @@
             </a>
             <?php } ?>
             <a href="cart.php" class="btn position-relative">
-              <i class = "fa fa-shopping-cart"></i> ตะกร้าสินค้า</span>
+              <i class = "fa fa-shopping-cart"></i> ตะกร้าสินค้า <span class="badge bg-primary"> 
+                <?php if(empty($_SESSION['cart'])) 
+                { echo '0'; 
+                } else { echo count($_SESSION['cart']); }    ?> </span> </span>
             </a>
         </div>
 

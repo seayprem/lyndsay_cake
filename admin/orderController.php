@@ -30,6 +30,25 @@ if(isset($_GET['order_id_2'])) {
 }
 ?>
 
+<!-- DELETE ORDER  -->
+<?php 
+if(isset($_GET['delete'])) {
+  $delete_id = $_GET['delete'];
+
+  $delete_sql = "DELETE FROM `order_head` WHERE o_id = $delete_id";
+  $delete_sql_detail = "DELETE FROM `order_detail` WHERE o_id = $delete_id";
+  $delete_query = mysqli_query($conn, $delete_sql);
+  $delete_query_detail = mysqli_query($conn, $delete_sql_detail);
+  if($delete_query) {
+    header("Location: orderController.php");
+  } else {
+    echo "Failed";
+  }
+
+}
+?>
+<!-- DELETE ORDER END -->
+
 
 
 <!DOCTYPE html>
@@ -172,7 +191,7 @@ if(isset($_GET['order_id_2'])) {
 
               <a href="orderController.php?order_id=<?= $row['o_id']; ?>" class="btn btn-primary" onclick="return confirm('แน่ใจใช่แล้วหรือไม่? ที่จะยืนยันที่เปลี่ยนสถานะ')"><i class="fa-solid fa-check"></i></a>  
             <?php } ?>
-            <a href="#" class="btn btn-primary"><i class="fa-solid fa-trash"></i></a>
+            <a href="orderController.php?delete=<?= $row['o_id']; ?>" class="btn btn-primary" onclick="return confirm('แน่ใจใช่แล้วหรือไม่? ที่จะลบออเดอร์นี้ทิ้ง')"><i class="fa-solid fa-trash"></i></a>
           </td>
         </tr>
         <?php } ?>

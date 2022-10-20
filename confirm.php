@@ -3,7 +3,7 @@ include_once('system/config.php');
 session_start();
 if(empty($_SESSION['user'])) {
   echo '<script>alert("กรุณาเข้าสู่ระบบก่อนสั่งซื้อสินค้า")</script>';
-  echo '<script>history.back()</script>';
+  echo '<script>window.location.href="login.php"</script>';
 }
 ?>
 
@@ -35,6 +35,7 @@ if(empty($_SESSION['user'])) {
       </tr>
       <tr>
         <td>รูปภาพสินค้า</td>
+        <td>เขียนหน้าเค้ก</td>
         <td>สินค้า</td>
         <td align="center">ราคา</td>
         <td align="center">จำนวน</td>
@@ -51,6 +52,7 @@ if(empty($_SESSION['user'])) {
           $total	+= $sum;
           echo "<tr>";
           echo "<td><img src='img/products/".$row['product_image']."' width='150' height='150'></td>";
+          echo "<td>" . 'ไม่รู้ทำไงนึกไม่ออก' . "</td>";
           echo "<td>" . $row["product_name"] . "</td>";
           echo "<td align='center'>" .number_format($row['product_price'],2) ."</td>";
           echo "<td align='center'>$qty</td>";
@@ -119,6 +121,7 @@ if(empty($_SESSION['user'])) {
       <input type="hidden" name="total_qty" value="<?= $qty ?>">
       <input type="hidden" name="total" value="<?= $total ?>">
       <input type="hidden" name="userid" value="<?= $_SESSION['user_id']; ?>">
+      <input type="hidden" name="write" value="ยังทำไม่ได้">
       <tr>
         <td colspan="2" align="center" bgcolor="#CCCCCC">
         <input type="submit" name="Submit2" class="btn btn-primary" value="สั่งซื้อ" />

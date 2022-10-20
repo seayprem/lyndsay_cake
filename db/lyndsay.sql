@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2022 at 11:31 AM
+-- Generation Time: Oct 20, 2022 at 07:28 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -59,7 +59,8 @@ INSERT INTO `category` (`cate_id`, `cate_name`) VALUES
 (1, 'ช็อกโกแลต'),
 (4, 'วนิลา'),
 (5, 'ชาเขียว'),
-(6, 'ส้ม');
+(6, 'ส้ม'),
+(7, 'ของตกแต่ง');
 
 -- --------------------------------------------------------
 
@@ -72,17 +73,9 @@ CREATE TABLE `order_detail` (
   `o_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `d_qty` int(11) NOT NULL,
-  `d_subtotal` float NOT NULL
+  `d_subtotal` float NOT NULL,
+  `d_text` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `order_detail`
---
-
-INSERT INTO `order_detail` (`d_id`, `o_id`, `product_id`, `d_qty`, `d_subtotal`) VALUES
-(1, 1, 1, 5, 1500),
-(2, 2, 2, 1, 250),
-(3, 2, 1, 1, 300);
 
 -- --------------------------------------------------------
 
@@ -101,16 +94,9 @@ CREATE TABLE `order_head` (
   `o_prove` text COLLATE utf8_unicode_ci NOT NULL,
   `o_status` int(11) NOT NULL,
   `o_qty` int(11) NOT NULL,
-  `o_total` float NOT NULL
+  `o_total` float NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `order_head`
---
-
-INSERT INTO `order_head` (`o_id`, `o_dttm`, `o_name`, `o_email`, `o_phone`, `o_lineid`, `o_datemeet`, `o_prove`, `o_status`, `o_qty`, `o_total`) VALUES
-(1, '2022-10-20 08:57:05', 'วรภาณี บลาๆจำนามสกุลไม่ได้', 'tey.woraphanee@gmail.com', '0123456789', 'woraphanee', '2022-10-22', 'product221020085705791534062.jpg', 0, 5, 1500),
-(2, '2022-10-20 08:57:58', 'วรภาณี บลาๆจำนามสกุลไม่ได้', 'tey.woraphanee@gmail.com', '0123456789', 'woraphanee', '2022-10-22', 'product22102008575822716832.png', 0, 1, 550);
 
 -- --------------------------------------------------------
 
@@ -126,15 +112,6 @@ CREATE TABLE `products` (
   `product_image` text NOT NULL,
   `cate_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`product_id`, `product_name`, `product_detail`, `product_price`, `product_image`, `cate_id`) VALUES
-(1, 'ลาวา', 'อร่อย TEST', 300, 'product221018081718568734723.png', 1),
-(2, 'ส้ม', 'อร่อย', 250, 'product22101810000465971745.jpg', 6),
-(3, 'ส้มมมมมมมมมมมมมมมมม', 'ฟไกฟไกฟไกฟไ', 500, 'product221020093845114990806.png', 6);
 
 -- --------------------------------------------------------
 
@@ -157,7 +134,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_fullname`, `user_email`, `user_lineid`, `user_phone`) VALUES
-(1, 'tey', '1234', 'วรภาณี บลาๆจำนามสกุลไม่ได้', 'tey.woraphanee@gmail.com', 'woraphanee', '0123456789'),
+(1, 'tey', '1234', 'วรภาณี บลาๆ', 'tey.woraphanee@gmail.com', 'woraphanee', '0123456789'),
 (2, 'ice', '1234', 'อภิวัฒน์', 'awiwat.bonlerm@gmail.com', 'icezii', '0123456789');
 
 --
@@ -215,31 +192,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `d_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `d_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_head`
 --
 ALTER TABLE `order_head`
-  MODIFY `o_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `o_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

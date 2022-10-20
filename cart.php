@@ -74,6 +74,7 @@ session_start();
       <td bgcolor="#EAEAEA"  class='text-center'>ภาพสินค้า</td>
       <td align="center" bgcolor="#EAEAEA">เขียนหน้าเค้ก</td>
       <td align="center" bgcolor="#EAEAEA">สินค้า</td>
+      <td align="center" bgcolor="#EAEAEA">ประเภทสินค้า</td>
       <td align="center" bgcolor="#EAEAEA">ราคา</td>
       <td align="center" bgcolor="#EAEAEA">จำนวน (ปอนด์)</td>
       <td align="center" bgcolor="#EAEAEA">รวม(บาท)</td>
@@ -101,6 +102,7 @@ if(!empty($_SESSION['cart']))
 		echo "<td class='text-center'><input type='text' name='write' placeholder='เขียนหน้าเค้กที่ต้องการ...' class='form-control'>";
     }
 		echo "<td class='text-center'>" . $row["product_name"] . "</td>";
+		echo "<td class='text-center'>" . $row["cate_name"] . "</td>";
 		echo "<td align='center'>" .number_format($row["product_price"],2) . "</td>";
 		echo "<td align='center'>";  
 		echo "<input type='number' name='amount[$p_id]' value='$qty' size='2' style='width: 60px;'/></td>";
@@ -111,6 +113,7 @@ if(!empty($_SESSION['cart']))
 	}
 	echo "<tr>";
   	echo "<td colspan='3' bgcolor='#CEE7FF' align='center'><b>ราคารวม</b></td>";
+    echo "<td></td>";
     echo "<td></td>";
     echo "<td></td>";
   	echo "<td align='right' bgcolor='#CEE7FF'>"."<b>".number_format($total,2)."</b>"."</td>";
@@ -127,6 +130,7 @@ if(!empty($_SESSION['cart']))
 ?>
 <tr>
 <td><a href="product.php" class="btn btn-primary">กลับหน้ารายการสินค้า</a></td>
+<td></td>
 <td></td>
 <td></td>
 <td colspan="4" align="right">
