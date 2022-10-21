@@ -35,7 +35,6 @@ if(empty($_SESSION['user'])) {
       </tr>
       <tr>
         <td>รูปภาพสินค้า</td>
-        <td>เขียนหน้าเค้ก</td>
         <td>สินค้า</td>
         <td align="center">ราคา</td>
         <td align="center">จำนวน</td>
@@ -52,7 +51,6 @@ if(empty($_SESSION['user'])) {
           $total	+= $sum;
           echo "<tr>";
           echo "<td><img src='img/products/".$row['product_image']."' width='150' height='150'></td>";
-          echo "<td>" . $_POST['write'] . "</td>";
           echo "<td>" . $row["product_name"] . "</td>";
           echo "<td align='center'>" .number_format($row['product_price'],2) ."</td>";
           echo "<td align='center'>$qty</td>";
@@ -82,6 +80,7 @@ if(empty($_SESSION['user'])) {
       <tr>
         <td colspan="2" bgcolor="#CCCCCC">รายละเอียดในการติดต่อ</td>
       </tr>
+
       <tr>
           <td bgcolor="#EEEEEE">ชื่อ</td>
           <td><input name="name" type="text" id="name" class="form-control" value="<?= $list_user_row['user_fullname']; ?>" required/></td>
@@ -97,6 +96,10 @@ if(empty($_SESSION['user'])) {
       <tr>
           <td bgcolor="#EEEEEE">ไอดีไลน์</td>
           <td><input name="lineid" type="text" id="phone" class="form-control"  value="<?= $list_user_row['user_lineid']; ?>" required /></td>
+      </tr>
+      <tr>
+        <td>เขัยนหน้าเค้ก (อย่างละเอียด)</td>
+        <td><textarea name="special" class="form-control" cols="30" rows="5"></textarea></td>
       </tr>
       <tr>
           <td bgcolor="#EEEEEE">วันที่นัดรับ</td>

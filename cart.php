@@ -72,7 +72,6 @@ session_start();
     </tr>
     <tr>
       <td bgcolor="#EAEAEA"  class='text-center'>ภาพสินค้า</td>
-      <td align="center" bgcolor="#EAEAEA">เขียนหน้าเค้ก</td>
       <td align="center" bgcolor="#EAEAEA">สินค้า</td>
       <td align="center" bgcolor="#EAEAEA">ประเภทสินค้า</td>
       <td align="center" bgcolor="#EAEAEA">ราคา</td>
@@ -96,13 +95,6 @@ if(!empty($_SESSION['cart']))
 		$total += $sum;
 		echo "<tr>";
 		echo "<td class='text-center'><img src='img/products/".$row['product_image']."' width='150' height='150'></td>";
-    if($row['cate_name'] == "ของตกแต่ง") {
-    echo "<td></td>";
-    } else {
-  		echo "<td><input type='text' name='write' class='form-control'></td>";
-
-    }
-    
 		echo "<td class='text-center'>" . $row["product_name"] . "</td>";
 		echo "<td class='text-center'>" . $row["cate_name"] . "</td>";
 		echo "<td align='center'>" .number_format($row["product_price"],2) . "</td>";
@@ -115,7 +107,6 @@ if(!empty($_SESSION['cart']))
 	}
 	echo "<tr>";
   	echo "<td colspan='3' bgcolor='#CEE7FF' align='center'><b>ราคารวม</b></td>";
-    echo "<td></td>";
     echo "<td></td>";
     echo "<td></td>";
   	echo "<td align='right' bgcolor='#CEE7FF'>"."<b>".number_format($total,2)."</b>"."</td>";
@@ -132,7 +123,6 @@ if(!empty($_SESSION['cart']))
 ?>
 <tr>
 <td><a href="product.php" class="btn btn-primary">กลับหน้ารายการสินค้า</a></td>
-<td></td>
 <td></td>
 <td></td>
 <td colspan="4" align="right">

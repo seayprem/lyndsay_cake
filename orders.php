@@ -92,6 +92,7 @@ session_start();
         <tr>
           <th class="text-center">ลำดับ</th>
           <th class="text-center">หลักฐานการโอน</th>
+          <th class="text-center">เขียนหน้าเค้ก</th>
           <th class="text-center">ราคาที่สั่งหมด</th>
           <th class="text-center">วันที่สั่ง</th>
           <th class="text-center">วันที่นัดรับ</th>
@@ -116,6 +117,7 @@ session_start();
         <tr class="text-center">
           <td><?= $row['o_id']; ?></td>
           <td><a href="img/products/<?= $row['o_prove']; ?>" target="_blank"><img src="img/products/<?= $row['o_prove']; ?>" alt="" width="100" height="100"></a></td>
+          <td><?= $row['o_special']; ?></td>
           <td><?= number_format($row['o_total']); ?></td>
           <td><?= $row['o_dttm']; ?></td>
           <td><?= $row['o_datemeet']; ?></td>

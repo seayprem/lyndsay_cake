@@ -7,7 +7,7 @@ session_start();
 <?php
 
   // เขียนหน้าเค้ก
-  $d_write = $_POST['write'];
+  $d_write = $_POST['special'];
   // เขียนหน้าเค้ก end
 
 	$userid = $_POST["userid"];
@@ -41,7 +41,7 @@ session_start();
 
     //บันทึกการสั่งซื้อลงใน order_detail
     mysqli_query($conn, "BEGIN"); 
-    $sql1	= "insert into order_head values(null, '$dttm', '$name', '$email', '$phone', '$lineid', '$date_meet', '$newname', '$status', '$total_qty', '$total', '$userid')";
+    $sql1	= "insert into order_head values(null, '$dttm', '$name', '$email', '$phone', '$lineid', '$date_meet', '$newname', '$d_write', '$status', '$total_qty', '$total', '$userid')";
     $query1	= mysqli_query($conn, $sql1);
     //ฟังก์ชั่น MAX() จะคืนค่าที่มากที่สุดในคอลัมน์ที่ระบุ ออกมา หรือจะพูดง่ายๆก็ว่า ใช้สำหรับหาค่าที่มากที่สุด นั่นเอง.
     $sql2 = "select max(o_id) as o_id from order_head where o_name='$name' and o_email='$email' and o_dttm='$dttm' ";
@@ -56,7 +56,7 @@ session_start();
       $row3	= mysqli_fetch_array($query3);
       $total	= $row3['product_price']*$qty;
       
-      $sql4	= "insert into order_detail values(null, '$o_id', '$p_id', '$qty', '$total', '$d_write')";
+      $sql4	= "insert into order_detail values(null, '$o_id', '$p_id', '$qty', '$total')";
       $query4	= mysqli_query($conn, $sql4);
     }
     

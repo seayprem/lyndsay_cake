@@ -128,17 +128,6 @@ if(isset($_POST['comment_submit'])) {
             
             <!-- Comment  -->
             <!-- <h3>แสดงความคิดเห็น</h3> -->
-            
-            <form action="#" method="POST">
-              <div class="mb-3 mt-5">
-                <label for="exampleFormControlTextarea1" class="form-label">แสดงความคิดเห็น</label>
-                <textarea class="form-control" name="comment" placeholder="ช่องกรอกแสดงความคิดเห็น" id="exampleFormControlTextarea1" rows="6"></textarea>
-              </div>
-              <div class="text-end">
-                <button class="btn btn-primary" name="comment_submit" type="submit">แสดงความเห็น</button>
-              </div>
-            </form>
-
             <!-- Comment end -->  
 
           </div>
