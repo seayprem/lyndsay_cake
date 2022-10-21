@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2022 at 07:28 PM
+-- Generation Time: Oct 21, 2022 at 05:23 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -65,6 +65,26 @@ INSERT INTO `category` (`cate_id`, `cate_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL,
+  `comment_context` text NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `comment_context`, `product_id`, `user_id`) VALUES
+(1, 'TEST', 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `order_detail`
 --
 
@@ -76,6 +96,13 @@ CREATE TABLE `order_detail` (
   `d_subtotal` float NOT NULL,
   `d_text` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`d_id`, `o_id`, `product_id`, `d_qty`, `d_subtotal`, `d_text`) VALUES
+(1, 1, 1, 1, 400, 'ยังทำไม่ได้');
 
 -- --------------------------------------------------------
 
@@ -98,6 +125,13 @@ CREATE TABLE `order_head` (
   `user_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `order_head`
+--
+
+INSERT INTO `order_head` (`o_id`, `o_dttm`, `o_name`, `o_email`, `o_phone`, `o_lineid`, `o_datemeet`, `o_prove`, `o_status`, `o_qty`, `o_total`, `user_id`) VALUES
+(1, '2022-10-21 05:06:48', 'วรภาณี บลาๆ', 'tey.woraphanee@gmail.com', '0123456789', 'woraphanee', '2022-10-23', 'product221021050648514946284.png', 0, 1, 400, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -112,6 +146,13 @@ CREATE TABLE `products` (
   `product_image` text NOT NULL,
   `cate_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `product_name`, `product_detail`, `product_price`, `product_image`, `cate_id`) VALUES
+(1, 'cake_lyndsay', 'bug ', 400, 'product221021045024107433828.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -152,6 +193,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`cate_id`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`);
 
 --
 -- Indexes for table `order_detail`
@@ -195,22 +242,28 @@ ALTER TABLE `category`
   MODIFY `cate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `d_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `d_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order_head`
 --
 ALTER TABLE `order_head`
-  MODIFY `o_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `o_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

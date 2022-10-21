@@ -13,6 +13,29 @@ if(isset($_GET['detail'])) {
   header("Location: products.php");
 }
 ?>
+
+
+<!-- Comment Controller  -->
+<?php 
+if(isset($_POST['comment_submit'])) {
+
+  $comment = $_POST['comment'];
+  $session_userId = $_SESSION['user_id'];
+  
+  $comment_sql = "INSERT INTO `comments` (`comment_context`, `product_id`, `user_id`) VALUES ('$comment', $detail_id, $session_userId)";
+  $comment_query = mysqli_query($conn, $comment_sql);
+  if($comment_query) {
+    echo "<script>window.location.href = 'productDetail.php?detail=$detail_id'</script>";
+  } else {
+    echo "<script>alert('กรุณาเข้าสู่ระบบ');window.location.href = 'login.php'</script>";
+  }
+  
+
+}
+?>
+<!-- Comment Controller end -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,15 +109,33 @@ if(isset($_GET['detail'])) {
           <div class="container">
             <h3 class="text-center">ความคิดเห็น</h3>
 
-
-
+            <!-- LIST Comment  -->
+            <?php 
+            $list_comment_sql = "SELECT * FROM `comments` INNER JOIN products ON comments.product_id = products.product_id INNER JOIN users ON comments.user_id = users.user_id ORDER BY `comment_id` DESC";
+            $list_comment_query = mysqli_query($conn, $list_comment_sql);
+            while($list_comment_row = mysqli_fetch_array($list_comment_query)) {
+            ?>
+            <figure>
+              <blockquote class="blockquote">
+                <p><?= $list_comment_row['comment_context']; ?></p>
+              </blockquote>
+              <figcaption class="blockquote-footer">
+                แสดงความคิดเห็นโดย <cite title="Source Title"><?= $list_comment_row['user_fullname']; ?></cite>
+              </figcaption>
+            </figure>
+            <?php } ?>
+            <!-- LIST Comment end -->
+            
             <!-- Comment  -->
             <!-- <h3>แสดงความคิดเห็น</h3> -->
             
             <form action="#" method="POST">
               <div class="mb-3 mt-5">
                 <label for="exampleFormControlTextarea1" class="form-label">แสดงความคิดเห็น</label>
-                <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="comment" placeholder="ช่องกรอกแสดงความคิดเห็น" id="exampleFormControlTextarea1" rows="6"></textarea>
+              </div>
+              <div class="text-end">
+                <button class="btn btn-primary" name="comment_submit" type="submit">แสดงความเห็น</button>
               </div>
             </form>
 
