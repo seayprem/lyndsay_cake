@@ -80,6 +80,30 @@ if(isset($_GET['detail'])) {
               <a href = "products.php" class = "btn btn-primary mt-3">ย้อนกลับ</a>
             </div>
           </div>
+          
+          <hr class="mt-5">
+
+          <div class="container">
+            <h3 class="text-center">ความคิดเห็น</h3>
+
+
+
+            <!-- Comment  -->
+            <!-- <h3>แสดงความคิดเห็น</h3> -->
+            
+            <form action="#" method="POST">
+              <div class="mb-3 mt-5">
+                <label for="exampleFormControlTextarea1" class="form-label">แสดงความคิดเห็น</label>
+                <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+            </form>
+
+            <!-- Comment end -->  
+
+          </div>
+
+          
+
 
           <?php } ?>
 

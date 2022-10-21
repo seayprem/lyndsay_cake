@@ -105,9 +105,9 @@ if(isset($_REQUEST['delete'])) {
   $delete_sql = "DELETE FROM `products` WHERE `product_id` = $delete_id";
   $delete_query = mysqli_query($conn, $delete_sql);
   if($delete_query) {
-    echo "<script>alert('ลบรายการสินค้าสำเร็จ');window.location.href = 'productController.php'</script>";
+    // echo "<script>alert('ลบรายการสินค้าสำเร็จ');window.location.href = 'productController.php'</script>";
   } else {
-    echo "<script>alert('ลบรายการสินค้าไม่สำเร็จ');window.location.href = 'productController.php'</script>";
+    // echo "<script>alert('ลบรายการสินค้าไม่สำเร็จ');window.location.href = 'productController.php'</script>";
   }
 
 }
