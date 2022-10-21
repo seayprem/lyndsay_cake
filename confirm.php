@@ -52,7 +52,7 @@ if(empty($_SESSION['user'])) {
           $total	+= $sum;
           echo "<tr>";
           echo "<td><img src='img/products/".$row['product_image']."' width='150' height='150'></td>";
-          echo "<td>" . 'ไม่รู้ทำไงนึกไม่ออก' . "</td>";
+          echo "<td>" . $_POST['write'] . "</td>";
           echo "<td>" . $row["product_name"] . "</td>";
           echo "<td align='center'>" .number_format($row['product_price'],2) ."</td>";
           echo "<td align='center'>$qty</td>";

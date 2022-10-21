@@ -99,8 +99,10 @@ if(!empty($_SESSION['cart']))
     if($row['cate_name'] == "ของตกแต่ง") {
     echo "<td></td>";
     } else {
-		echo "<td class='text-center'><input type='text' name='write' placeholder='เขียนหน้าเค้กที่ต้องการ...' class='form-control'>";
+  		echo "<td><input type='text' name='write' class='form-control'></td>";
+
     }
+    
 		echo "<td class='text-center'>" . $row["product_name"] . "</td>";
 		echo "<td class='text-center'>" . $row["cate_name"] . "</td>";
 		echo "<td align='center'>" .number_format($row["product_price"],2) . "</td>";
@@ -134,6 +136,7 @@ if(!empty($_SESSION['cart']))
 <td></td>
 <td></td>
 <td colspan="4" align="right">
+    <!-- <input type='text' name='write' placeholder='เขียนหน้าเค้กที่ต้องการ...' class='form-control' required> -->
     <input type="submit" name="button" id="button" class="btn btn-primary" value="ปรับปรุง" />
     <input type="button" name="Submit2" value="สั่งซื้อ" class="btn btn-primary" onclick="window.location='confirm.php';" />
 </td>
