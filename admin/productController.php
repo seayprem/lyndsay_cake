@@ -72,9 +72,9 @@ if(isset($_POST['editProduct'])) {
     $update_sql = "UPDATE `products` SET `product_name` = '$name', `product_detail` = '$detail', `product_price` = $price, `cate_id` = $category WHERE `product_id` = $product_id";
     $update_query = mysqli_query($conn, $update_sql);
     if($update_query) {
-      echo "success";
+      echo "<script>alert('แก้ไขสินค้าสำเร็จ');window.location.href = 'productController.php'</script>";
     } else {
-      echo "failed";
+      echo "<script>alert('แก้ไขสินค้าไม่สำเร็จ');window.location.href = 'productController.php'</script>";
     }
   } else {
 
@@ -84,9 +84,9 @@ if(isset($_POST['editProduct'])) {
       $update_sql = "UPDATE `products` SET `product_name` = '$name', `product_detail` = '$detail', `product_price` = $price, `product_image` = '$newname', `cate_id` = $category WHERE `product_id` = $product_id";
       $update_query = mysqli_query($conn, $update_sql);
       if($update_query) {
-        echo "success";
+        echo "<script>alert('แก้ไขสินค้าสำเร็จ');window.location.href = 'productController.php'</script>";
       } else {
-        echo "failed";
+        echo "<script>alert('แก้ไขสินค้าไม่สำเร็จ');window.location.href = 'productController.php'</script>";
       }
 
     }
@@ -105,10 +105,9 @@ if(isset($_REQUEST['delete'])) {
   $delete_sql = "DELETE FROM `products` WHERE `product_id` = $delete_id";
   $delete_query = mysqli_query($conn, $delete_sql);
   if($delete_query) {
-    // echo "success";
-    header("Location: productController.php");
+    echo "<script>alert('ลบรายการสินค้าสำเร็จ');window.location.href = 'productController.php'</script>";
   } else {
-    echo "failed";
+    echo "<script>alert('ลบรายการสินค้าไม่สำเร็จ');window.location.href = 'productController.php'</script>";
   }
 
 }
